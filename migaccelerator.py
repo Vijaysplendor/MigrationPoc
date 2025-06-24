@@ -40,7 +40,7 @@ def initial_conversion():
 def convert_classic_to_yaml(url,url_count):
     #validate each url
     #base_url = url
-    pat = '3T8vDg6IJSfYKcGNxO8mBzhEMGSBfrjqFqa4kQNkEuj4YNsY4BDDJQQJ99BEACAAAAAcA37ZAAASAZDO3JYL'
+    pat = ''
                
     authorization = str(base64.b64encode(bytes(':'+pat, 'ascii')), 'ascii')
 
