@@ -225,3 +225,14 @@ def run_pipeline_conversion(pat_env_var="ADO_PAT", input_file="Intial_URL_to_be_
     except Exception as e:
         print(f"Error running pipeline conversion: {e}")
         return {"status": "error", "message": str(e)}
+        
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run pipeline conversion.")
+    parser.add_argument("--pat-env-var", default="ADO_PAT", help="Name of the environment variable containing the Azure DevOps PAT")
+    parser.add_argument("--input-file", default="Intial_URL_to_be_converted.txt", help="Input file with pipeline URLs")
+
+    args = parser.parse_args()
+    result = run_pipeline_conversion(pat_env_var=args.pat_env_var, input_file=args.input_file)
+    print(result)
