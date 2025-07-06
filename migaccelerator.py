@@ -3,6 +3,7 @@ import base64
 import requests
 import json
 import re
+import yaml
 from urllib.parse import urlparse
 
 # Headers will be initialized dynamically
@@ -68,6 +69,15 @@ def create_branch_with_yaml(org, project, repo_id, repo_name, yaml_content, defi
 
     url = f"{base_url}/pushes?api-version=6.0"
 
+    # ✅ Ensure the YAML content is formatted properly
+    try:
+        parsed_yaml = yaml.safe_load(yaml_content)
+        yaml_content_pretty = yaml.dump(parsed_yaml, sort_keys=False, default_flow_style=False)
+        print(f"\n🔍 YAML content reformatted successfully.")
+    except Exception as e:
+        print(f"⚠️ Failed to reformat YAML: {e}")
+        yaml_content_pretty = yaml_content  # fallback
+
     data = {
         "refUpdates": [
             {
@@ -85,7 +95,7 @@ def create_branch_with_yaml(org, project, repo_id, repo_name, yaml_content, defi
                             "path": f"/pipelines/converted-pipeline-{definition_id}.yaml"
                         },
                         "newContent": {
-                            "content": yaml_content,
+                            "content": yaml_content_pretty,
                             "contentType": "rawText"
                         }
                     }
