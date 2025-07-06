@@ -22,8 +22,8 @@ jobs:
         run: |
           pip install -r requirements.txt
           
-      - name: Run Migration Script
+      - name: Run pipeline conversion
         run: |
           echo "Converting classic to yml pipeline"
-          python migaccelerator.py
+          python migaccelerator.py --pat-env-var ADO_PAT --input-file Intial_URL_to_be_converted.txt
           
