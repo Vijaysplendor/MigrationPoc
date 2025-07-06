@@ -3,7 +3,7 @@ import base64
 import requests
 import json
 import re
-import pyyaml
+import yaml
 from urllib.parse import urlparse
 
 # Headers will be initialized dynamically
