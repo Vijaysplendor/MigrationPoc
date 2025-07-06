@@ -31,7 +31,12 @@ def get_converted_yaml_content(yaml_url):
     print(f"\n📥 Fetching YAML content from: {yaml_url}")
     response = requests.get(yaml_url, headers=headers)
     if response.status_code == 200:
-        return response.text
+        # Extract the YAML content
+        yaml_content = response.json()["yaml"]
+
+        # Remove "..." from the YAML content
+        yaml_content = yaml_content.replace("...", "")
+        return yaml_content
     else:
         print(f"❌ Failed to retrieve YAML content.")
         print(f"🔢 Status code: {response.status_code}, 🧾 Error: {response.text}")
