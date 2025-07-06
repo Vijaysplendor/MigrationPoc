@@ -26,6 +26,4 @@ jobs:
         run: |
           echo "Converting classic to yml pipeline"
           python migaccelerator.py
-          echo "Pushing the file to ADO Repo"
-          python migaccpushfile.py
           
